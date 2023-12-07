@@ -9,3 +9,77 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Role {
+  id   Int    @id
+  name String
+
+  users User[]
+  @@map("roles")
+}
+
+model User {
+  id       Int    @id
+  password String
+
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
+
+  profile    Profile?
+  peminjaman Peminjaman[]
+  @@map("user")
+}
+
+model Profile {
+  id        Int       @id
+  username  String
+  firstName String?
+  lastName  String?
+  email     String?   @unique
+  phone     String?   @unique
+  address   String?   @db.Text
+  birthDate DateTime?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
+  @@map("profile")
+}
+
+model History { de
+  id        Int    @id
+  condition String
+  status    String
+
+  peminjaman   Peminjaman @relation(fields: [peminjamanId], references: [id])
+  peminjamanId Int        @unique
+  @@map("history")
+}
+
+model Inventory {
+  id          Int     @id
+  name        String
+  address     String  @db.Text
+  description String  @db.Text
+  category    String
+  images      String
+  status      Boolean
+
+  peminjamans Peminjaman[]
+  @@map("inventory")
+}
+
+model Peminjaman {
+  id          Int      @id
+  startDate   DateTime
+  endDate     DateTime
+  description String   @db.Text
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  inventory   Inventory @relation(fields: [inventoryId], references: [id])
+  inventoryId Int
+
+  history History?
+  @@map("peminjaman")
+}
