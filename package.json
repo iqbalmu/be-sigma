@@ -11,9 +11,11 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "^3.1.9",
+    "ejs-mate": "^4.0.0",
     "express": "^4.18.2",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "startbootstrap-sb-admin-2": "^4.1.4"
   },
   "devDependencies": {
     "prisma": "^5.7.0"

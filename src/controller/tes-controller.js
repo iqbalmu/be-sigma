@@ -1,6 +1,6 @@
 const tes = (req, res, next) => {
     try {
-        res.render('tes', { tes: 'this tes page' })
+        res.render('pages/dashboard/index')
     } catch (error) {
         next(error)
     }

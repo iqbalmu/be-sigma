@@ -9,6 +9,7 @@ CREATE TABLE `roles` (
 -- CreateTable
 CREATE TABLE `user` (
     `id` INTEGER NOT NULL,
+    `username` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
     `roleId` INTEGER NOT NULL,
 
@@ -18,7 +19,6 @@ CREATE TABLE `user` (
 -- CreateTable
 CREATE TABLE `profile` (
     `id` INTEGER NOT NULL,
-    `username` VARCHAR(191) NOT NULL,
     `firstName` VARCHAR(191) NULL,
     `lastName` VARCHAR(191) NULL,
     `email` VARCHAR(191) NULL,
