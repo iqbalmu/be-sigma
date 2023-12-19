@@ -1,4 +1,70 @@
 <% layout('partials/main') %>
 
-<!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Users Page</h1>
+    <% if (message.length> 0) { %>
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong>
+                <%= message %>
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+        
+            <!-- Page Heading -->
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3 text-gray-800">User</h1>
+
+                <a class="btn btn-sm btn-dark" href="/admin/users/create">
+                    <i class="fas fa-plus-circle mr-1"></i>
+                    create user
+                </a>
+            </div>
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <!-- <div class="card-header py-3">
+     <h6 class="m-0 font-weight-bold text-primary">Recent Orders</h6>
+ </div> -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% users.forEach(user=> { %>
+                                    <tr>
+                                        <td># <%= user.id %>
+                                        </td>
+                                        <td>
+                                            <img src="/upload/user-profiles/<%= user.profile.images %>" alt="profile"
+                                                style="border-radius: 50%;height: 25px; width: 25px;">
+                                            <%= user.profile.name %>
+                                        </td>
+                                        <td>
+                                            <%= user.profile.email %>
+                                        </td>
+                                        <td>
+                                            <%= user.profile.phone %>
+                                        </td>
+                                        <td>
+                                            <%= user.role.name %>
+                                        </td>
+                                        <td>
+                                            <a href="/admin/users/<%= user.id %>" class="btn btn-sm btn-info">show</a>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>

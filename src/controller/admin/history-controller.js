@@ -1,6 +1,9 @@
-const index = (req, res, next) => {
+const historyService = require('../../service/history-service')
+
+const index = async (req, res, next) => {
     try {
-        res.render('pages/history/index')
+        const result = await historyService.list()
+        res.render('pages/history/index', { active: 'history', histories: result })
     } catch (error) {
         next(error)
     }

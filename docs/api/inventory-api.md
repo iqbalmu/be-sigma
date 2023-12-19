@@ -17,8 +17,7 @@ Response Body Success :
     "data" : [
         {
             "id" : 1,
-            "name": "name 1",
-            "address": "address 1",
+            "name": "name 1",            
             "description": "description 1",
             "category": "category 1",
             "images": "images 1",
@@ -59,8 +58,7 @@ Response Body Success :
     "message": "get inventories success",
     "data" : {
         "id" : 1,
-        "name": "name 1",
-        "address": "address 1",
+        "name": "name 1",        
         "description": "description 1",
         "category": "category 1",
         "images": "images 1",

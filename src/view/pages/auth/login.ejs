@@ -18,7 +18,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/sbadmin-2/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- <link href="/sbadmin-2/css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <link href="/stylesheets/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -26,53 +27,77 @@
 
     <div class="container">
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center mt-5">
+        <% if (message.length> 0) { %>
+            <div class="alert alert-warning alert-dismissible fade show text-center w-50 mt-5 mx-auto" role="alert">
+                <strong>
+                    <%= message %>
+                </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% } %>
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+                <!-- Outer Row -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div>
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
-                                    </div>
-                                    <form class="user">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control"
-                                                id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Keep me logged in</label>
+                        <div class="o-hidden border-0 my-5">
+                            <div class="card-body p-0">
+                                <!-- Nested Row within Card Body -->
+                                <div class="row">
+                                    <div class="col-lg-6 d-none d-lg-block">
+                                        <div class="d-flex flex-column align-items-center justify-content-center mt-3">
+                                            <img src="/images/logo.png" alt="logo">
+                                            <div>
+                                                <p class="text-center text-dark mt-3" style="margin-bottom: 0;">
+                                                    <strong>Welcome to</strong>
+                                                </p>
+                                                <h1 class="h1" style="color: #003F62; font-weight: bold;">sigma’s
+                                                    company</h1>
                                             </div>
                                         </div>
-                                        <div class="d-flex justify-content-end">
-                                            <a href="/admin/dashboard" class="btn px-4" style="background-color: #003F62; color: white;">
-                                                Login
-                                            </a>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="p-5">
+                                            <div>
+                                                <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                            </div>
+                                            <form class="user" method="post" action="/admin/login">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="userId" name="id"
+                                                        placeholder="ID Pegawai">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" class="form-control"
+                                                        id="password" placeholder="Password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox small">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="customCheck">
+                                                        <label class="custom-control-label" for="customCheck">Keep me
+                                                            logged
+                                                            in</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn px-4"
+                                                        style="background-color: #003F62; color: white;">
+                                                        Login
+                                                    </button>
+                                                </div>
+
+                                            </form>
                                         </div>
-                                        
-                                    </form>                                                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
-
-            </div>
-
-        </div>
 
     </div>
 

@@ -11,75 +11,84 @@ datasource db {
 }
 
 model Role {
-  id   Int    @id
+  id   Int    @id @default(autoincrement())
   name String
 
   users User[]
+
   @@map("roles")
 }
 
 model User {
   id       Int    @id
-  username  String
   password String
 
-  role   Role @relation(fields: [roleId], references: [id])
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
   roleId Int
 
   profile    Profile?
   peminjaman Peminjaman[]
+  histories  History[]
+
   @@map("user")
 }
 
 model Profile {
-  id        Int       @id  
-  firstName String?
-  lastName  String?
-  email     String?   @unique
-  phone     String?   @unique
-  address   String?   @db.Text
-  birthDate DateTime?
+  id     Int     @id @default(autoincrement())
+  name   String?
+  email  String? @unique
+  phone  String? @unique
+  images String?
 
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int  @unique
+
   @@map("profile")
 }
 
-model History { de
-  id        Int    @id
-  condition String
-  status    String
+model History {
+  id           Int     @id @default(autoincrement())
+  peminjamanId Int
+  inventoryId  Int
+  userId       Int
+  condition    String?
+  startDate   DateTime @db.Date
+  endDate     DateTime @db.Date
+  status       String
 
-  peminjaman   Peminjaman @relation(fields: [peminjamanId], references: [id])
-  peminjamanId Int        @unique
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
   @@map("history")
 }
 
 model Inventory {
-  id          Int     @id
+  id          Int    @id
   name        String
-  address     String  @db.Text
-  description String  @db.Text
+  description String @db.Text
   category    String
   images      String
-  status      Boolean
+  status      String @default("available")
+  stock       String @default("inStock")
 
   peminjamans Peminjaman[]
+  histories   History[]
+
   @@map("inventory")
 }
 
 model Peminjaman {
-  id          Int      @id
-  startDate   DateTime
-  endDate     DateTime
+  id          Int      @id @default(autoincrement())
+  startDate   DateTime @db.Date
+  endDate     DateTime @db.Date
   description String   @db.Text
+  status      String   @default("pending")
 
-  user   User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
 
-  inventory   Inventory @relation(fields: [inventoryId], references: [id])
+  inventory   Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
   inventoryId Int
 
-  history History?
   @@map("peminjaman")
 }

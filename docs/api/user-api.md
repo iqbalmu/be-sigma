@@ -4,7 +4,7 @@
 
 ## Get Data User
 
-Endpoint : GET /api/v1/user/:id
+Endpoint : GET /api/v1/profile
 
 Headers :
 - Authorization : token
@@ -40,7 +40,7 @@ Response Body Error :
 
 ## Update Data User
 
-Endpoint : PUT /api/v1/user/:id
+Endpoint : PUT /api/v1/profile
 
 Headers :
 - Authorization : token

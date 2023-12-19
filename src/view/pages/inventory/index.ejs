@@ -1,89 +1,78 @@
 <% layout('partials/main') %>
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">List Inventory</h1>
+  <% if (message.length> 0) { %>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <strong>
+        <%= message %>
+      </strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% } %>
 
-    <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow rounded">
+      <!-- Page Heading -->
+      <h1 class="h3 mb-4 text-gray-800">List Inventory</h1>
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow rounded">
 
         <!-- Add Button -->
         <a class="btn btn-dark mr-auto" href="/admin/inventories/create">
-            <i class="fas fa-plus-circle mr-1"></i> Add
+          <i class="fas fa-plus-circle mr-1"></i> Add
         </a>
 
         <!-- Search Form -->
         <form class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search..."
-                    aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-dark" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
+          <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search..." aria-label="Search"
+              aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-dark" type="button">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
             </div>
+          </div>
         </form>
 
-    </nav>
-    <!-- End of Topbar -->
+      </nav>
+      <!-- End of Topbar -->
 
-    <!-- Page Content -->
-    <div class="row">
+      <!-- Page Content -->
+      <div class="row">
 
         <div class="col-lg-12">
 
-            <!-- Card 1 -->
+          <% inventories.forEach(item=> { %>
+            <!-- Card -->
             <div class="card w-100 mb-3">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="https://via.placeholder.com/50" class="card-img" alt="Card Image" height="180px" style="object-fit: cover;">
+                  <img src="/upload/inventories/<%= item.images %>" class="card-img" alt="Card Image" height="180px"
+                    style="object-fit: cover;">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Card 1</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/admin/inventories/id" class="btn btn-dark">view</a>
+                    <a href="/admin/inventories/<%= item.id %>">
+                      <h5 class="card-title">
+                        <%= item.name %>
+                      </h5>
+                    </a>
+                    <p class="card-text">
+                      <%= item.description.substring(0, 90) %>
+                    </p>
+                    <p
+                      class="badge <% if (item.stock == 'inStock') { %>badge-primary<% }else{%>badge-danger<%} %> px-3 py-2 position-relative">
+                      <%= item.stock %>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- End of Card 1 -->
-  
-            <!-- Card 2 -->
-            <div class="card w-100 mb-3">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img src="https://via.placeholder.com/50" class="card-img" alt="Card Image" height="180px" style="object-fit: cover;">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card 2</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/admin/inventories/id" class="btn btn-dark">view</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End of Card 2 -->
-  
-            <!-- Card 3 -->
-            <div class="card w-100 mb-3">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img src="https://via.placeholder.com/50" class="card-img" alt="Card Image" height="180px" style="object-fit: cover;">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card 3</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/admin/inventories/id" class="btn btn-dark">view</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End of Card 3 -->
-  
+            <!-- End of Card -->
+            <%}); %>
+
         </div>
-  
+
       </div>
       <!-- End of Page Content -->
